@@ -13,12 +13,12 @@ when 'ubuntu','debian'
   build_packages = ['tar', 'build-essential']
 when 'centos','redhat','scientific','amazon','suse'
   shell = '/bin/sh'
-  homedir = '/var/lib/redis' 
+  homedir = '/var/lib/redis'
 when 'fedora'
   shell = '/bin/sh'
-  homedir = '/home' 
-  # This is necessary because selinux by default prevents the homedir from 
-  # being managed in /var/lib/ 
+  homedir = '/home'
+  # This is necessary because selinux by default prevents the homedir from
+  # being managed in /var/lib/
 else
   shell = '/bin/sh'
   homedir = '/redis'
@@ -28,6 +28,7 @@ default['redisio']['build_packages'] = build_packages
 
 # Set VM Overcommit Memory for Redis
 default['sysctl']['vm']['overcommit_memory'] = 1
+default['sysctl']['vm']['swappiness'] = 0
 
 # Tarball and download related defaults
 default['redisio']['mirror'] = "https://redis.googlecode.com/files"
